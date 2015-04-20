@@ -69,7 +69,7 @@ set grepprg=ack " Use Ack instead of Grep
 " " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>ac :vsp app/controllers/application_controller.rb<cr>
+map <Leader>ac :e app/controllers/application_controller.rb<cr>
 " Use Leader b to see who wrote the code highlighted
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 " Save with leader w
