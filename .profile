@@ -24,3 +24,13 @@ alias gs="git stash"
 alias gsp="git stash pop"
 alias gcom="git checkout master"
 alias v="vim"
+
+# MDLIVE aliases
+alias md="cd ~/Projects/mdlive/legacy/"
+alias st="cd ~/Projects/mdlive/stern/"
+alias fr="cd ~/Projects/mdlive/fore/"
+alias pp="cd ~/Projects/mdlive/port/"
+alias nx="sudo nginx"
+alias nxs="sudo nginx -s stop"
+alias vst="vim ~/Projects/mdlive/stern/"
+alias vmd="vim ~/Projects/mdlive/legacy/"
