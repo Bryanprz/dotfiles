@@ -17,8 +17,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-" " Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()            " required
 " filetype plugin indent on    " required
@@ -68,7 +68,8 @@ set grepprg=ack " Use Ack instead of Grep
 " Edit another file in the same directory as the current file
 " " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+" Split vertically with leader v
+map <Leader>v :vsp <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>ac :e app/controllers/application_controller.rb<cr>
 " Use Leader b to see who wrote the code highlighted
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
