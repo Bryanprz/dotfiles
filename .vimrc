@@ -90,4 +90,12 @@ nnoremap <Leader>z <C-Z><CR>
 nnoremap <Leader>ss <C-W>w
 "" Scroll Forward
 nnoremap <Leader>f <C-F><CR>
+" Search and replace
+"   - Search the usual way with /something
+"   - Hit 'cs' to replace first match, then hit <Esc>
+"   - Hit n.n.n.n, reviewing and replacing all matches
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
 source ~/.vim/rspec
