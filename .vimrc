@@ -39,7 +39,8 @@ call vundle#end()            " required
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-colorscheme torte
+colorscheme solarized
+set background=dark
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -90,6 +91,8 @@ nnoremap <Leader>z <C-Z><CR>
 nnoremap <Leader>ss <C-W>w
 "" Scroll Forward
 nnoremap <Leader>f <C-F><CR>
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Search and replace
 "   - Search the usual way with /something
 "   - Hit 'cs' to replace first match, then hit <Esc>
