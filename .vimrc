@@ -40,7 +40,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 colorscheme solarized
-set background=dark
+set background=light
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -100,5 +100,6 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
-
+" Drop in Pry to debug. Leader bp
+nmap <leader>bp orequire 'pry'; binding.pry<esc>^
 source ~/.vim/rspec
