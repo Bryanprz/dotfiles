@@ -102,4 +102,10 @@ vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
 omap s :normal vs<CR>
 " Drop in Pry to debug. Leader bp
 nmap <leader>bp orequire 'pry'; binding.pry<esc>^
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+" Open VIMRC file with <SPACE> vm
+nmap <leader>vm :tabedit $MYVIMRC<CR>
 source ~/.vim/rspec

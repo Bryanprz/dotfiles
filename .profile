@@ -25,6 +25,8 @@ alias gs="git stash"
 alias gsp="git stash pop"
 alias gcom="git checkout master"
 alias v="vim"
+alias mu="mysql -uroot"
+alias ct="ctags -R --exclude=.git --exclude=log *"
 
 # MDLIVE aliases
 alias md="cd ~/Projects/mdlive/legacy/"
