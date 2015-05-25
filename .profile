@@ -28,6 +28,7 @@ alias v="vim"
 alias mu="mysql -uroot"
 alias ct="ctags -R --exclude=.git --exclude=log *"
 alias rc="rails c"
+alias ctags='/usr/local/bin/ctags'
 
 # MDLIVE aliases
 alias md="cd ~/Projects/mdlive/legacy/"
