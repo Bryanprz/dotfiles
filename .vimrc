@@ -108,4 +108,10 @@ if has("autocmd")
 endif
 " Open VIMRC file with <SPACE> vm
 nmap <leader>vm :tabedit $MYVIMRC<CR>
+" Open related file in split pane with <SPACE> rv
+nmap <leader>rv :RV<CR>
+" Open related file in full pane with <SPACE> rr
+nmap <leader>rr :R<CR>
+" Open Hacker News with <SPACE> hn
+nmap <leader>hn :HackerNews<CR>
 source ~/.vim/rspec
