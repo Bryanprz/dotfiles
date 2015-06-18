@@ -40,7 +40,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 colorscheme solarized
-set background=light
+set background=dark
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -96,7 +96,8 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Search and replace
 "   - Search the usual way with /something
 "   - Hit 'cs' to replace first match, then hit <Esc>
-"   - Hit n.n.n.n, reviewing and replacing all matches
+"   - Hit n.n.n.n, reviewing and replacing all matches. 
+"   - To replace a match, hit '.'. Otherwise skip with n
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
@@ -114,4 +115,8 @@ nmap <leader>rv :RV<CR>
 nmap <leader>rr :R<CR>
 " Open Hacker News with <SPACE> hn
 nmap <leader>hn :HackerNews<CR>
+" ERB Tag (non-print) with leader %
+nnoremap <leader>% viw<esc>a %><esc>hhbi<% <esc>lllelll
+" ERB Tag (print) with leader %=
+nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 source ~/.vim/rspec
