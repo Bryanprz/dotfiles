@@ -11,7 +11,7 @@ Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'thoughtbot/vim-rspec'
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -119,4 +119,9 @@ nmap <leader>hn :HackerNews<CR>
 nnoremap <leader>% viw<esc>a %><esc>hhbi<% <esc>lllelll
 " ERB Tag (print) with leader %=
 nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
+" Escape mode with jk
+inoremap jk <esc>
+" Go back to your mark with leader aa
+nnoremap <leader>aa `a
+nnoremap <leader>A `A
 source ~/.vim/rspec
