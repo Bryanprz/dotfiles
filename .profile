@@ -30,9 +30,11 @@ alias ct="ctags -R --exclude=.git --exclude=log *"
 alias rc="rails c"
 alias grh="git reset HEAD"
 alias ctags='/usr/local/bin/ctags'
+alias b='bundle'
 
 # MDLIVE aliases
-alias md="cd ~/Projects/mdlive/legacy/"
+alias lg="cd ~/Projects/mdlive/legacy/"
+alias md="cd ~/Projects/mdlive/"
 alias st="cd ~/Projects/mdlive/stern/"
 alias fr="cd ~/Projects/mdlive/fore/"
 alias pp="cd ~/Projects/mdlive/port/"
@@ -41,3 +43,4 @@ alias nxs="sudo nginx -s stop"
 alias vst="vim ~/Projects/mdlive/stern/"
 alias vmd="vim ~/Projects/mdlive/legacy/"
 alias ap="cd ~/Projects/mdlive/api-testing/"
+alias o="cd ~/Projects/mdlive/opentok/"
