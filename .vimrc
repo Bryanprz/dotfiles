@@ -40,7 +40,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 colorscheme solarized
-set background=dark
+set background=light
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -123,5 +123,10 @@ nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 inoremap jk <esc>
 " Go back to your mark with leader aa
 nnoremap <leader>aa `a
+" Go back to your mark with leader A
 nnoremap <leader>A `A
+" Go to related controller with leader c
+nnoremap <leader>c :Econtroller
+" Go to related model with leader m
+nnoremap <leader>m :Emodel
 source ~/.vim/rspec
