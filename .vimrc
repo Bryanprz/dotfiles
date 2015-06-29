@@ -121,8 +121,8 @@ nnoremap <leader>% viw<esc>a %><esc>hhbi<% <esc>lllelll
 nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 " Escape mode with jk
 inoremap jk <esc>
-" Go back to your mark with leader aa
-nnoremap <leader>aa `a
+" Set mark with ma
+nnoremap ma mA
 " Go back to your mark with leader A
 nnoremap <leader>A `A
 " Go to related controller with leader c
