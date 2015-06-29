@@ -127,6 +127,8 @@ nnoremap <leader>aa `a
 nnoremap <leader>A `A
 " Go to related controller with leader c
 nnoremap <leader>c :Econtroller<CR>
+" Copy/paste without going to visual mode
+nnoremap yp vyp<CR>
 " Go to related model with leader m
 nnoremap <leader>m :Emodel<CR>
 source ~/.vim/rspec
