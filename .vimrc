@@ -126,7 +126,7 @@ nnoremap <leader>aa `a
 " Go back to your mark with leader A
 nnoremap <leader>A `A
 " Go to related controller with leader c
-nnoremap <leader>c :Econtroller
+nnoremap <leader>c :Econtroller<CR>
 " Go to related model with leader m
-nnoremap <leader>m :Emodel
+nnoremap <leader>m :Emodel<CR>
 source ~/.vim/rspec
