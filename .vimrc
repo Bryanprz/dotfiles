@@ -131,4 +131,6 @@ nnoremap <leader>c :Econtroller<CR>
 nnoremap yp vyp<CR>
 " Go to related model with leader m
 nnoremap <leader>m :Emodel<CR>
+" Clear trailing whitespace
+nnoremap <Leader>rt :%s/\s\+$//e<CR>
 source ~/.vim/rspec
