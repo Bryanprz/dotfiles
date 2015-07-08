@@ -1,7 +1,5 @@
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 source ~/.gitprompt
-source ~/.bashrc
 
 alias gst="git status"
 alias ga="git add"
@@ -46,3 +44,7 @@ alias vmd="vim ~/Projects/mdlive/legacy/"
 alias ap="cd ~/Projects/mdlive/api-testing/"
 alias o="cd ~/Projects/mdlive/opentok/"
 alias bt="cd ~/Projects/breakthrough"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

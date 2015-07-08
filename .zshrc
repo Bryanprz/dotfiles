@@ -9,3 +9,5 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
