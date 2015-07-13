@@ -1,5 +1,6 @@
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 source ~/.gitprompt
+source ~/.bashrc
 
 alias gst="git status"
 alias ga="git add"
@@ -28,7 +29,7 @@ alias ct="ctags -R --exclude=.git --exclude=log *"
 alias rc="rails c"
 alias rs="rails s"
 alias grh="git reset HEAD"
-alias ctags='/usr/local/bin/ctags'
+alias ctags='`brew --prefix`/bin/ctags'
 alias b='bundle'
 
 # MDLIVE aliases
@@ -43,8 +44,9 @@ alias vst="vim ~/Projects/mdlive/stern/"
 alias vmd="vim ~/Projects/mdlive/legacy/"
 alias ap="cd ~/Projects/mdlive/api-testing/"
 alias o="cd ~/Projects/mdlive/opentok/"
-alias bt="cd ~/Projects/breakthrough"
+alias bt="cd ~/Projects/breakthrough_project/breakthrough"
+alias j="v ~/Projects/breakthrough_project/icd_9_conversion/csv_printer.rb"
+alias jj="cd ~/Projects/breakthrough_project/icd_9_conversion/"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
