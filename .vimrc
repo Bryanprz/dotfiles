@@ -20,22 +20,18 @@ Plugin 'honza/vim-snippets'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
 Plugin 'ryanss/vim-hackernews'
+Plugin 'terryma/vim-expand-region'
 
-call vundle#end()            " required
-" filetype plugin indent on    " required
-" " To ignore plugin indent changes, instead use:
-" "filetype plugin on
-" "
-" " Brief help
-" " :PluginList       - lists configured plugins
-" " :PluginInstall    - installs plugins; append `!` to update or just
+call vundle#end()
+
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
 " :PluginUpdate
-" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" " :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-" "
-" " see :h vundle for more details or wiki for FAQ
-" " Put your non-Plugin stuff after this line
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -50,6 +46,7 @@ set si "smart indent
 set noswapfile " tell vim not to make stupid swap file when opening with vim
 set wildmenu " visual autocomplete for command menu
 set cursorline
+set cursorcolumn
 set timeoutlen=1000 " used for mapping delays
 set showcmd
 set tabstop=2       " The width of a TAB is set to 2.
@@ -79,7 +76,7 @@ vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'
 nnoremap <Leader>w :w<CR>
 " Quit with leader q
 nnoremap <Leader>q :q<CR>
-" " Enter Visual mode with <Space><Space>
+" Enter Visual mode with <Space><Space>
 nmap <Leader><Leader> V
 "" Open file with <Space> O
 nnoremap <Leader>o :CtrlP<CR>
@@ -121,16 +118,37 @@ nnoremap <leader>% viw<esc>a %><esc>hhbi<% <esc>lllelll
 nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 " Escape mode with jk
 inoremap jk <esc>
+vnoremap jk <esc>
 " Set mark with ma
 nnoremap ma mA
 " Go back to your mark with leader A
 nnoremap <leader>A `A
 " Go to related controller with leader c
 nnoremap <leader>c :Econtroller<CR>
+" Go to related schema definition with leader r
+nnoremap <leader>r :R<CR>
 " Copy/paste without going to visual mode
 nnoremap yp vyp<CR>
 " Go to related model with leader m
 nnoremap <leader>m :Emodel<CR>
 " Clear trailing whitespace
 nnoremap <Leader>rt :%s/\s\+$//e<CR>
+" Vim-expand-region mappings
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" Use Enter instead of G for moving to lines/bottom of page
+nnoremap <CR> G
+" Display extra whitespace
+set list listchars=tab:»·,trail:·
+
+" Copy & paste to system clipboard with <Space>p and <Space>y
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
+
+" Remove trailing whitespace on save for ruby files.
+au BufWritePre *.rb :%s/\s\+$//e      
 source ~/.vim/rspec
