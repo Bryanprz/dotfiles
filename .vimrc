@@ -1,9 +1,16 @@
+" ========================================= "
+" vimrc mappings, plugins and configuration "
+" author: Bryan Perez
+" github: https://github.com/bryanprz       "
+" ========================================= "
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 "" Jump between method/class openings and closing tags with %
 runtime macros/matchit.vim
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
@@ -27,12 +34,12 @@ call vundle#end()
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just
 " :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-execute pathogen#infect()
+execute pathogen#infect() 
 syntax on
 filetype plugin indent on
 colorscheme solarized
@@ -63,6 +70,11 @@ set laststatus=2 " always show status (wrapped with airline)
 set noshowmode " remove mode from status line when using vim airline
 set tags=./tags; "" Set the tag file search order
 set grepprg=ack " Use Ack instead of Grep
+
+
+" ========================================= "
+" Mappings
+" ========================================= "
 
 " Edit another file in the same directory as the current file
 " " uses expression to extract path from current file's path
@@ -151,4 +163,8 @@ vnoremap <Leader>P "+P
 
 " Remove trailing whitespace on save for ruby files.
 au BufWritePre *.rb :%s/\s\+$//e      
+" Use 0 to go to start of text as opposed to start of line
+nmap 0 ^
+" Move split pane into its own tab with 'leader bt' Switch tabs with 'gt' or 'gT'.
+nnoremap <leader>bt <C-w>T
 source ~/.vim/rspec
