@@ -28,6 +28,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
 Plugin 'ryanss/vim-hackernews'
 Plugin 'terryma/vim-expand-region'
+Plugin 'tpope/vim-cucumber'
 
 call vundle#end()
 
@@ -43,7 +44,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 colorscheme solarized
-set background=light
+set background=dark
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -65,7 +66,7 @@ set hlsearch " highlight matches
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' "show line numbers in directory 
 let g:netrw_liststyle=3 " sets the list style for Netrw
 let NERDTreeShowLineNumbers=1 " show line numbers in NERDTree
-nmap <silent> <leader>d :NERDTreeToggle<CR> 
+nnoremap <silent> <leader>d :NERDTreeToggle<CR>
 set laststatus=2 " always show status (wrapped with airline)
 set noshowmode " remove mode from status line when using vim airline
 set tags=./tags; "" Set the tag file search order
@@ -111,7 +112,7 @@ vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
 " Drop in Pry to debug. Leader bp
-nmap <leader>bp orequire 'pry'; binding.pry<esc>^
+nnoremap <leader>bp orequire 'pry'; binding.pry<esc>^
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
@@ -150,6 +151,7 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 " Use Enter instead of G for moving to lines/bottom of page
 nnoremap <CR> G
+vnoremap <CR> G
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
 
@@ -167,4 +169,7 @@ au BufWritePre *.rb :%s/\s\+$//e
 nmap 0 ^
 " Move split pane into its own tab with 'leader bt' Switch tabs with 'gt' or 'gT'.
 nnoremap <leader>bt <C-w>T
+"Use Ag instead of Ack for searching
+let g:ackprg= 'ag --nogroup --nocolor --column'
+let g:solarized_termcolors=16
 source ~/.vim/rspec
