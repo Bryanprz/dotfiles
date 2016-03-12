@@ -8,13 +8,15 @@ alias gc="git commit -m"
 alias gco="git checkout"
 alias gp="git push"
 alias gpom="git push origin master"
-alias gphm="git push heroku master"
+alias gphm="git push heroku master && heroku run rake db:migrate && heroku restart"
 alias gpem="git push origin master; git push heroku master"
 alias gpl="git pull"
 alias gx="gitx"
+alias st="open -a SourceTree ./"
 alias gb="git branch"
 alias sb="open /Applications/Sublime\ Text\ 2.app"
 alias glol="git log --oneline --graph --all --decorate"
+alias gll="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gd="git diff"
 alias gpo="git push origin"
 alias gl="git log"
@@ -31,11 +33,16 @@ alias rs="rails s"
 alias grh="git reset HEAD"
 alias ctags='`brew --prefix`/bin/ctags'
 alias b='bundle'
+alias be='bundle exec'
+alias g='guard'
+alias f='fg'
+alias tr='cd ~/Projects/truck_manager/'
+alias toqa='ruby ~/Projects/push_to_qa.rb'
 
-# MDLIVE aliases
+# MDLIVE/Breakthrough aliases
 alias lg="cd ~/Projects/mdlive/legacy/"
 alias md="cd ~/Projects/mdlive/"
-alias st="cd ~/Projects/mdlive/stern/"
+alias stern="cd ~/Projects/mdlive/stern/"
 alias fr="cd ~/Projects/mdlive/fore/"
 alias pp="cd ~/Projects/mdlive/port/"
 alias nx="sudo nginx"
@@ -47,6 +54,12 @@ alias o="cd ~/Projects/mdlive/opentok/"
 alias bt="cd ~/Projects/breakthrough_project/breakthrough"
 alias j="v ~/Projects/breakthrough_project/icd_9_conversion/csv_printer.rb"
 alias jj="cd ~/Projects/breakthrough_project/icd_9_conversion/"
+alias btv="bt; v"
+alias sandi="cd ~/Projects/sandi/mdlive-2015-nov"
+
+export ANDROID_HOME=/Users/Bryan/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
