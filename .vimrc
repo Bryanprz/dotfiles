@@ -29,7 +29,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ryanss/vim-hackernews'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-cucumber'
-
+Plugin 'unblevable/quick-scope'
 call vundle#end()
 
 " :PluginList       - lists configured plugins
@@ -43,7 +43,7 @@ call vundle#end()
 execute pathogen#infect() 
 syntax on
 filetype plugin indent on
-colorscheme solarized
+"colorscheme solarized
 set background=dark
 set number
 nnoremap <SPACE> <Nop>
@@ -71,6 +71,7 @@ set laststatus=2 " always show status (wrapped with airline)
 set noshowmode " remove mode from status line when using vim airline
 set tags=./tags; "" Set the tag file search order
 set grepprg=ack " Use Ack instead of Grep
+set guifont=Monaco:h13
 
 
 " ========================================= "
@@ -98,6 +99,7 @@ nnoremap <Leader>gst :Git status<CR>
 "" Go to shell
 nnoremap <Leader>z <C-Z><CR>
 "" Switch panes
+"nnoremap <Leader>ss <C-W>w
 nnoremap <Leader>ss <C-W>w
 "" Scroll Forward
 nnoremap <Leader>f <C-F><CR>
@@ -113,6 +115,8 @@ vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
 omap s :normal vs<CR>
 " Drop in Pry to debug. Leader bp
 nnoremap <leader>bp orequire 'pry'; binding.pry<esc>^
+" Drop in Pry in ERB. Leader bpp
+nnoremap <leader>bpp o<% require 'pry'; binding.pry %><esc>^
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
