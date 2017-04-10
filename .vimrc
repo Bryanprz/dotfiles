@@ -78,6 +78,12 @@ set guifont=Monaco:h13
 " Mappings
 " ========================================= "
 
+"Jump to Marks with leader a, b, c
+nnoremap <Leader>a `A
+nnoremap <Leader>b `B
+"" Set mark with ma, mb,
+nnoremap ma mA
+nnoremap mb mB
 " Edit another file in the same directory as the current file
 " " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
@@ -136,10 +142,6 @@ nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 " Escape mode with jk
 inoremap jk <esc>
 vnoremap jk <esc>
-" Set mark with ma
-nnoremap ma mA
-" Go back to your mark with leader A
-nnoremap <leader>A `A
 " Go to related controller with leader c
 nnoremap <leader>c :Econtroller<CR>
 " Go to related schema definition with leader r
@@ -158,6 +160,8 @@ nnoremap <CR> G
 vnoremap <CR> G
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
+" Use F9 to check syntax of ruby file
+autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y
 vnoremap <Leader>y "+y
