@@ -28,7 +28,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
 Plugin 'ryanss/vim-hackernews'
 Plugin 'terryma/vim-expand-region'
-
+Plugin 'tpope/vim-cucumber'
+Plugin 'unblevable/quick-scope'
 call vundle#end()
 
 " :PluginList       - lists configured plugins
@@ -42,8 +43,8 @@ call vundle#end()
 execute pathogen#infect() 
 syntax on
 filetype plugin indent on
-colorscheme solarized
-set background=light
+"colorscheme solarized
+set background=dark
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -65,17 +66,24 @@ set hlsearch " highlight matches
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' "show line numbers in directory 
 let g:netrw_liststyle=3 " sets the list style for Netrw
 let NERDTreeShowLineNumbers=1 " show line numbers in NERDTree
-nmap <silent> <leader>d :NERDTreeToggle<CR> 
+nnoremap <silent> <leader>d :NERDTreeToggle<CR>
 set laststatus=2 " always show status (wrapped with airline)
 set noshowmode " remove mode from status line when using vim airline
 set tags=./tags; "" Set the tag file search order
 set grepprg=ack " Use Ack instead of Grep
+set guifont=Monaco:h13
 
 
 " ========================================= "
 " Mappings
 " ========================================= "
 
+"Jump to Marks with leader a, b, c
+nnoremap <Leader>a `A
+nnoremap <Leader>b `B
+"" Set mark with ma, mb,
+nnoremap ma mA
+nnoremap mb mB
 " Edit another file in the same directory as the current file
 " " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
@@ -97,6 +105,7 @@ nnoremap <Leader>gst :Git status<CR>
 "" Go to shell
 nnoremap <Leader>z <C-Z><CR>
 "" Switch panes
+"nnoremap <Leader>ss <C-W>w
 nnoremap <Leader>ss <C-W>w
 "" Scroll Forward
 nnoremap <Leader>f <C-F><CR>
@@ -111,7 +120,9 @@ vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
 " Drop in Pry to debug. Leader bp
-nmap <leader>bp orequire 'pry'; binding.pry<esc>^
+nnoremap <leader>bp orequire 'pry'; binding.pry<esc>^
+" Drop in Pry in ERB. Leader bpp
+nnoremap <leader>bpp o<% require 'pry'; binding.pry %><esc>^
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
@@ -131,10 +142,6 @@ nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 " Escape mode with jk
 inoremap jk <esc>
 vnoremap jk <esc>
-" Set mark with ma
-nnoremap ma mA
-" Go back to your mark with leader A
-nnoremap <leader>A `A
 " Go to related controller with leader c
 nnoremap <leader>c :Econtroller<CR>
 " Go to related schema definition with leader r
@@ -150,8 +157,11 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 " Use Enter instead of G for moving to lines/bottom of page
 nnoremap <CR> G
+vnoremap <CR> G
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
+" Use F9 to check syntax of ruby file
+autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y
 vnoremap <Leader>y "+y
@@ -167,4 +177,7 @@ au BufWritePre *.rb :%s/\s\+$//e
 nmap 0 ^
 " Move split pane into its own tab with 'leader bt' Switch tabs with 'gt' or 'gT'.
 nnoremap <leader>bt <C-w>T
+"Use Ag instead of Ack for searching
+let g:ackprg= 'ag --nogroup --nocolor --column'
+let g:solarized_termcolors=16
 source ~/.vim/rspec
