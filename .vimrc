@@ -54,7 +54,6 @@ set si "smart indent
 set noswapfile " tell vim not to make stupid swap file when opening with vim
 set wildmenu " visual autocomplete for command menu
 set cursorline
-set cursorcolumn
 set timeoutlen=1000 " used for mapping delays
 set showcmd
 set tabstop=2       " The width of a TAB is set to 2.
@@ -159,7 +158,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 nnoremap <CR> G
 vnoremap <CR> G
 " Display extra whitespace
-set list listchars=tab:»·,trail:·
+"set list listchars=tab:»·,trail:· // to show tabs
 " Use F9 to check syntax of ruby file
 autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
 
