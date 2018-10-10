@@ -26,10 +26,13 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
-Plugin 'ryanss/vim-hackernews'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-cucumber'
 Plugin 'unblevable/quick-scope'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tpope/vim-rails'
+Plugin 'scrooloose/nerdcommenter'
+
 call vundle#end()
 
 " :PluginList       - lists configured plugins
@@ -44,7 +47,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 "colorscheme solarized
-set background=dark
+set background=light
 set number
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
@@ -104,7 +107,6 @@ nnoremap <Leader>gst :Git status<CR>
 "" Go to shell
 nnoremap <Leader>z <C-Z><CR>
 "" Switch panes
-"nnoremap <Leader>ss <C-W>w
 nnoremap <Leader>ss <C-W>w
 "" Scroll Forward
 nnoremap <Leader>f <C-F><CR>
@@ -132,6 +134,8 @@ nmap <leader>vm :tabedit $MYVIMRC<CR>
 nmap <leader>rv :RV<CR>
 " Open related file in full pane with <SPACE> rr
 nmap <leader>rr :R<CR>
+" Open alternate file in full pane with <SPACE> aa
+nmap <leader>aa :A<CR>
 " Open Hacker News with <SPACE> hn
 nmap <leader>hn :HackerNews<CR>
 " ERB Tag (non-print) with leader %
