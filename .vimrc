@@ -17,7 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'thoughtbot/vim-rspec'
+"Plugin 'thoughtbot/vim-rspec'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -28,10 +28,14 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-surround'
 Plugin 'unblevable/quick-scope'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'w0rp/ale' 
+Plugin 'ternjs/tern_for_vim'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
@@ -47,8 +51,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 "colorscheme solarized
-set background=light
+set background=dark
 set number
+set relativenumber
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
 set ignorecase
@@ -57,9 +62,10 @@ set si "smart indent
 set noswapfile " tell vim not to make stupid swap file when opening with vim
 set wildmenu " visual autocomplete for command menu
 set cursorline
+"set cursorcolumn
 set timeoutlen=1000 " used for mapping delays
 set showcmd
-set tabstop=2       " The width of a TAB is set to 2.
+set tabstop=4       " The width of a TAB is set to 2.
 set shiftwidth=2    " Indents will have a width of 2
 set softtabstop=2   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
@@ -74,13 +80,38 @@ set noshowmode " remove mode from status line when using vim airline
 set tags=./tags; "" Set the tag file search order
 set grepprg=ack " Use Ack instead of Grep
 set guifont=Monaco:h13
+set rtp+=/usr/local/opt/fzf
 
+" ========================================= "
+" Ale and Lint
+" ========================================= "
+let g:ale_fixers = {
+\ 'javascript': ['eslint'],
+\ 'javascript.jsx': ['eslint'],
+\ 'ruby': ['rubocop'],
+\ 'cpp': ['clang-format'],
+\ 'css': ['CssBeautify'],
+\}
+
+let g:ale_linters = {
+\ 'javascript': ['eslint'],
+\ 'javascript.jsx': ['eslint'],
+\ 'css': ['scss-lint', 'csslint'],
+\ 'ruby': ['rubocop', 'brakeman'],
+\}
+
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_open_list = 0
+
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
 
 " ========================================= "
 " Mappings
 " ========================================= "
 
-"Jump to Marks with leader a, b, c
+"Jump to Marks with leader a/b
 nnoremap <Leader>a `A
 nnoremap <Leader>b `B
 "" Set mark with ma, mb,
@@ -107,7 +138,9 @@ nnoremap <Leader>gst :Git status<CR>
 "" Go to shell
 nnoremap <Leader>z <C-Z><CR>
 "" Switch panes
-nnoremap <Leader>ss <C-W>w
+nnoremap <Leader>k <C-W>w
+"" Go to previous pane
+nnoremap <Leader>j <C-W>W
 "" Scroll Forward
 nnoremap <Leader>f <C-F><CR>
 " <Ctrl-l> redraws the screen and removes any search highlighting.
@@ -136,8 +169,8 @@ nmap <leader>rv :RV<CR>
 nmap <leader>rr :R<CR>
 " Open alternate file in full pane with <SPACE> aa
 nmap <leader>aa :A<CR>
-" Open Hacker News with <SPACE> hn
-nmap <leader>hn :HackerNews<CR>
+" Open alternate file in split pane with <SPACE> av
+nmap <leader>av :AV<CR>
 " ERB Tag (non-print) with leader %
 nnoremap <leader>% viw<esc>a %><esc>hhbi<% <esc>lllelll
 " ERB Tag (print) with leader %=
@@ -174,13 +207,23 @@ nnoremap <Leader>P "+P
 vnoremap <Leader>p "+p
 vnoremap <Leader>P "+P
 
+"Move to next tab with leader tn
+nnoremap <Leader>tn :tabn<CR>
+" Show history with Leader .
+nnoremap <Leader>. :ls<CR>
+" Delete all marks with Leader 
+nnoremap <Leader>m :delm A-Z0-9<CR>
 " Remove trailing whitespace on save for ruby files.
 au BufWritePre *.rb :%s/\s\+$//e      
 " Use 0 to go to start of text as opposed to start of line
 nmap 0 ^
+" Surround a word in quotes or whatever with leader cs" (cursor needs to hover on word)
+nnoremap <leader>cs ysiw
 " Move split pane into its own tab with 'leader bt' Switch tabs with 'gt' or 'gT'.
 nnoremap <leader>bt <C-w>T
 "Use Ag instead of Ack for searching
+" Load CTAGS with Ctrl-F12
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let g:ackprg= 'ag --nogroup --nocolor --column'
 let g:solarized_termcolors=16
-source ~/.vim/rspec
+"source ~/.vim/rspec
