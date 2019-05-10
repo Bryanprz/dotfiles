@@ -19,7 +19,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'thoughtbot/vim-rspec'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -28,7 +29,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 Plugin 'unblevable/quick-scope'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-rails'
@@ -36,6 +37,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'w0rp/ale' 
 Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
 
 call vundle#end()
 
@@ -83,6 +85,40 @@ set guifont=Monaco:h13
 set rtp+=/usr/local/opt/fzf
 
 " ========================================= "
+" Snippets
+" ========================================= "
+
+" Trigger Confirmation
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+
+" Additional UltiSnips config.
+let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = ['ultisnips']
+
+" split window
+let g:UltiSnipsEditSplit="vertical"
+
+" Prevent ultisnips from removing our carefully-crafted mappings
+let g:UltiSnipsMappingsToIgnore = ['autocomplete']
+
+" ========================================= "
+" You Complete Me
+" ========================================= "
+
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_key_list_accept_completion = ['<C-y>', '<Enter>']
+
+" ========================================= "
+" NerdTree and CtrlP
+" ========================================= "
+" set ctrl p search paths to current nerdtree root directory
+let g:NERDTreeChDirMode = 2
+let g:ctrlp_working_path_mode = 'rw'
+
+" ========================================= "
 " Ale and Lint
 " ========================================= "
 let g:ale_fixers = {
@@ -101,8 +137,9 @@ let g:ale_linters = {
 \}
 
 let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 0
+let g:ale_lint_on_save = 1
 let g:ale_open_list = 0
+let g:ale_sign_column_always = 1
 
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
@@ -111,9 +148,10 @@ let g:airline#extensions#ale#enabled = 1
 " Mappings
 " ========================================= "
 
-"Jump to Marks with leader a/b
+"Jump to Marks with leader a/b/c
 nnoremap <Leader>a `A
 nnoremap <Leader>b `B
+nnoremap <Leader>c `C
 "" Set mark with ma, mb,
 nnoremap ma mA
 nnoremap mb mB
@@ -133,6 +171,8 @@ nnoremap <Leader>q :q<CR>
 nmap <Leader><Leader> V
 "" Open file with <Space> O
 nnoremap <Leader>o :CtrlP<CR>
+" let ctrlp find all files
+let g:ctrlp_max_files=0
 "" Git mappings
 nnoremap <Leader>gst :Git status<CR>
 "" Go to shell
@@ -178,8 +218,8 @@ nnoremap <leader>%= viw<esc>a %><esc>hhbi<%= <esc>lllelll
 " Escape mode with jk
 inoremap jk <esc>
 vnoremap jk <esc>
-" Go to related controller with leader c
-nnoremap <leader>c :Econtroller<CR>
+" Go to related controller with leader cc
+nnoremap <leader>cc :Econtroller<CR>
 " Go to related schema definition with leader r
 nnoremap <leader>r :R<CR>
 " Copy/paste without going to visual mode
@@ -218,7 +258,7 @@ au BufWritePre *.rb :%s/\s\+$//e
 " Use 0 to go to start of text as opposed to start of line
 nmap 0 ^
 " Surround a word in quotes or whatever with leader cs" (cursor needs to hover on word)
-nnoremap <leader>cs ysiw
+"nnoremap <leader>cs ysiw
 " Move split pane into its own tab with 'leader bt' Switch tabs with 'gt' or 'gT'.
 nnoremap <leader>bt <C-w>T
 "Use Ag instead of Ack for searching

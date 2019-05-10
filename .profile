@@ -37,15 +37,17 @@ alias b='bundle'
 alias be='bundle exec'
 alias g='guard'
 alias f='fg'
-alias tr='cd ~/Projects/truck_manager/'
-alias toqa='ruby ~/Projects/push_to_qa.rb'
+alias ht='cd ~/Projects/HiringThing/'
+alias mysql='cd /usr/local/mysql/bin; ./mysql -uroot -p'
+alias test='docker-compose run web bundle exec rake test'
+alias d='docker'
+alias ds='docker-sync'
+alias c='docker-compose run web bundle exec rails c'
+alias htlog='docker attach hiringthing_web_1'
 
 alias nx="sudo nginx"
 alias nxs="sudo nginx -s stop"
-alias vwt="vim ~/Projects/Development/weather/"
-alias cdw="cd ~/Projects/Development/weather/"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-alias fountain='cd ~/Projects/Development/fountain'

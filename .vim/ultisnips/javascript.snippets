@@ -1,0 +1,289 @@
+snippet cn "classname" i
+className="${1}"
+endsnippet
+
+snippet ss "set state" i
+this.setState({ ${1} })${2}
+endsnippet
+
+snippet ret "return block" b
+return (
+  ${1}
+);
+endsnippet
+
+snippet cf "function to constant" b
+const ${1} = ${2}( ${3} ) => {
+  ${4}
+}
+endsnippet
+
+snippet af "function" b
+${1}( ${2} ) => {
+  ${3}
+}
+endsnippet
+
+snippet st "styles attribute" i
+style={ ${1} }
+endsnippet
+
+snippet ecf "export const function" i
+export const ${1} = () => {
+  ${2}
+};
+endsnippet
+
+snippet ( "brackets" i
+(${1}) ${2}
+endsnippet
+
+snippet { "curly brackets" i
+{ ${1} }${2}
+endsnippet
+
+snippet " "double quotes" i
+"${1}" ${2}
+endsnippet
+
+snippet ' "single quotes" i
+'${1}'${2}
+endsnippet
+
+snippet ht "html tag" i
+<${1:View}>
+  ${2}
+</$1>
+endsnippet
+
+snippet oct "onChangeText attribute"
+onChangeText={${1}}
+endsnippet
+
+snippet msp
+const mapStateToProps = state => {
+  ${1}
+};
+endsnippet
+
+snippet i{ "import keyword with brackets"
+import { ${1} } from '${2}';
+endsnippet
+
+snippet i "import keyword"
+import ${1} from '${2}';
+endsnippet
+
+snippet connect "connect helper from react redux"
+import { connect } from 'react-redux';
+endsnippet
+
+snippet red 
+const INITIAL_STATE = {};
+
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    default: 
+      return state;
+  }
+};
+endsnippet
+
+snippet license "license" b
+/**
+ * Copyright 2019-present hey Perez. All rights reserved.
+ * Licensed under the terms of the MIT license.
+ */
+$1
+endsnippet
+
+
+snippet pretty "pretty-print JSON-able data" b
+console.log(
+  JSON.stringify({
+    $1
+  }, null, 2)
+);
+endsnippet
+
+#
+# React
+#
+
+global !p
+"""
+Checks the current buffer to see whether React ES6 syntax should be used.
+"""
+def react_es6():
+	buffer = vim.current.buffer
+	for line in buffer:
+		if re.search('React.createClass', line):
+			return False;
+	return True;
+endglobal
+
+snippet cc "create react class" b
+import React, { Component } from 'react';
+${3}
+export default class ${1:`!p snip.rv = re.sub('\.react$', '', snip.basename or 'ModuleName')`} extends Component {
+  render() {
+    return (
+	  <div>
+		  ${2}
+	  </div>
+    );
+  }
+}
+endsnippet
+
+snippet cnc "create native class" b
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+${4}
+export default class ${1:`!p snip.rv = re.sub('\.react$', '', snip.basename or 'ModuleName')`} extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>${2}</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: { ${3}
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  }
+});
+
+endsnippet
+
+snippet fc "create functional component" b
+const ${1:`!p snip.rv = re.sub('\.react$', '', snip.basename or 'ModuleName')`} = React.createClass({
+	render: function() {
+		$0
+	}
+});
+
+module.exports = $1;
+endsnippet
+
+snippet cdm "componentDidMount" b
+componentDidMount`!p snip.rv = '' if react_es6() else ': function'`() {
+	$0
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+snippet cdu "componentDidUpdate" b
+componentDidUpdate`!p snip.rv = '' if react_es6() else ': function'`(prevProps, prevState) {
+	$0
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+snippet cwm "componentWillMount" b
+componentWillMount`!p snip.rv = '' if react_es6() else ': function'`() {
+	$0
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+snippet cwrp "componentWillReceiveProps" b
+componentWillReceiveProps`!p snip.rv = '' if react_es6() else ': function'`(nextProps) {
+	$0
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+snippet cwum "componentWillUnmount" b
+componentWillUnmount`!p snip.rv = '' if react_es6() else ': function'`() {
+	$0
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+snippet cwu "componentWillUpdate" b
+componentWillUpdate`!p snip.rv = '' if react_es6() else ': function'`(nextProps, nextState) {
+	$0
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+snippet gdp "getDefaultProps" b
+getDefaultProps: function() {
+	return {
+		$0
+	};
+},
+endsnippet
+
+snippet gis "getInitialState" b
+getInitialState: function() {
+	return {
+		$0
+	};
+},
+endsnippet
+
+snippet scu "shouldComponentUpdate" b
+shouldComponentUpdate`!p snip.rv = '' if react_es6() else ': function'`(nextProps, nextState) {
+	return ${1:true};
+}`!p snip.rv = '' if react_es6() else ','`
+endsnippet
+
+#
+# console methods
+#
+
+snippet dir "console.dir"
+console.dir(${1});
+endsnippet
+
+snippet log "console.log"
+console.log(${1});
+endsnippet
+
+snippet time "console.time"
+console.time('${1}');
+endsnippet
+
+snippet end "console.timeEnd"
+console.timeEnd('${1}');
+endsnippet
+
+#
+# other
+#
+
+snippet ** "docblock" b
+/**
+${VISUAL:/((?m)^)/ * /g}$0
+ */
+endsnippet
+
+snippet "func?" "function" !r
+function${1: name}(${2:arg}) {
+	$0
+}
+endsnippet
+
+snippet pm "@providesModule declaration" b
+/**
+ * @providesModule ${1:`!p snip.rv = snip.basename or 'ModuleName'`}
+ */
+
+${3:'use strict';
+
+}$0
+endsnippet
+
+snippet "imp(ort)?" "import" !br
+import ${1:Module} from '${2}$1${3}';
+endsnippet
+
+snippet "req(u|ui|uir|uire)?" "require" !br
+const ${1:ModuleName} = require('${2}$1${3}');
+endsnippet
+
+snippet "(use|strict)" "'use strict' declaration" br
+'use strict';
+endsnippet
+
