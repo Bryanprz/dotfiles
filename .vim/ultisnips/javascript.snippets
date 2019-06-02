@@ -1,3 +1,17 @@
+snippet iaf "inline arrow function" i
+() => ${1}
+endsnippet
+
+snippet af "anonymous function"
+${1}(${2}) {
+  ${3}
+}
+endsnippet
+
+snippet < "inline angle brackets" i
+<${1}>${2}
+endsnippet
+
 snippet cn "classname" i
 className="${1}"
 endsnippet
@@ -18,7 +32,7 @@ const ${1} = ${2}( ${3} ) => {
 }
 endsnippet
 
-snippet af "function" b
+snippet arrf "arrow function" b
 ${1}( ${2} ) => {
   ${3}
 }
@@ -35,7 +49,7 @@ export const ${1} = () => {
 endsnippet
 
 snippet ( "brackets" i
-(${1}) ${2}
+(${1})${2}
 endsnippet
 
 snippet { "curly brackets" i
@@ -128,9 +142,9 @@ ${3}
 export default class ${1:`!p snip.rv = re.sub('\.react$', '', snip.basename or 'ModuleName')`} extends Component {
   render() {
     return (
-	  <div>
-		  ${2}
-	  </div>
+		<div>
+			${2}
+		</div>
     );
   }
 }

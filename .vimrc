@@ -19,8 +19,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'thoughtbot/vim-rspec'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'kien/ctrlp.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -38,6 +36,8 @@ Plugin 'w0rp/ale'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
 
 call vundle#end()
 
@@ -160,6 +160,8 @@ nnoremap mb mB
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 " Split vertically with leader v
 map <Leader>v :vsp 
+" Split horizontally with leader h
+map <Leader>h :sp 
 map <Leader>ac :e app/controllers/application_controller.rb<cr>
 " Use Leader b to see who wrote the code highlighted
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
@@ -169,8 +171,12 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 " Enter Visual mode with <Space><Space>
 nmap <Leader><Leader> V
-"" Open file with <Space> O
-nnoremap <Leader>o :CtrlP<CR>
+" Open file with leader o; fuzzy finder
+nnoremap <Leader>o :Files<CR>
+" search tags with leader t; fuzzy finder
+nnoremap <Leader>t :Tags<CR>
+" open buffer with ;
+nmap ; :Buffers<CR>
 " let ctrlp find all files
 let g:ctrlp_max_files=0
 "" Git mappings

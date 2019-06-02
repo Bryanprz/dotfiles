@@ -1,6 +1,5 @@
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 source ~/.gitprompt
-source ~/.bashrc
 
 alias gst="git status"
 alias ga="git add"
@@ -39,15 +38,19 @@ alias g='guard'
 alias f='fg'
 alias ht='cd ~/Projects/HiringThing/'
 alias mysql='cd /usr/local/mysql/bin; ./mysql -uroot -p'
-alias test='docker-compose run web bundle exec rake test'
+alias test='docker-compose run test bundle exec rake test'
 alias d='docker'
+alias dc='docker-compose'
 alias ds='docker-sync'
 alias c='docker-compose run web bundle exec rails c'
 alias htlog='docker attach hiringthing_web_1'
+alias list_containers='docker container ls -a'
+alias prepare_test_container='dc run test bundle exec rake db:create db:structure:load'
 
 alias nx="sudo nginx"
 alias nxs="sudo nginx -s stop"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/Users/bryan/Library/Python/2.7/bin" # Add PIP to path for AWS CLI
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
