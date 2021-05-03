@@ -17,25 +17,21 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'thoughtbot/vim-rspec'
 Plugin 'scrooloose/nerdtree'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'mileszs/ack.vim'
-Plugin 'terryma/vim-expand-region'
-Plugin 'tpope/vim-cucumber'
-"Plugin 'tpope/vim-surround'
+"Plugin 'terryma/vim-expand-region'
 Plugin 'unblevable/quick-scope'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'w0rp/ale' 
 Plugin 'ternjs/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'SirVer/ultisnips'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 
@@ -89,19 +85,19 @@ set rtp+=/usr/local/opt/fzf
 " ========================================= "
 
 " Trigger Confirmation
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+"let g:UltiSnipsExpandTrigger="<Tab>"
+"let g:UltiSnipsJumpForwardTrigger="<Tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
-" Additional UltiSnips config.
-let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
-let g:UltiSnipsSnippetDirectories = ['ultisnips']
+"" Additional UltiSnips config.
+"let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+"let g:UltiSnipsSnippetDirectories = ['ultisnips']
 
-" split window
-let g:UltiSnipsEditSplit="vertical"
+"" split window
+"let g:UltiSnipsEditSplit="vertical"
 
-" Prevent ultisnips from removing our carefully-crafted mappings
-let g:UltiSnipsMappingsToIgnore = ['autocomplete']
+"" Prevent ultisnips from removing our carefully-crafted mappings
+"let g:UltiSnipsMappingsToIgnore = ['autocomplete']
 
 " ========================================= "
 " You Complete Me
@@ -143,6 +139,12 @@ let g:ale_sign_column_always = 1
 
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
+
+" Set shell for Fish to work
+set shell=/bin/bash
+
+" SnipMate version
+let g:snipMate = { 'snippet_version' : 1 }
 
 " ========================================= "
 " Mappings
