@@ -13,11 +13,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+Plugin 'neoclide/coc.nvim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'mattn/emmet-vim'
+"Plugin 'universal-ctags/ctags'
+"Plugin 'tmsvg/pear-tree'
+"Plugin 'dense-analysis/ale'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
@@ -26,14 +32,23 @@ Plugin 'mileszs/ack.vim'
 "Plugin 'terryma/vim-expand-region'
 Plugin 'unblevable/quick-scope'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-rails'
+"Plugin 'tpope/vim-rails'
+"Plugin 'tpope/vim-unimpaired'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'w0rp/ale' 
-Plugin 'ternjs/tern_for_vim'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'SirVer/ultisnips'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
+"Plugin 'KabbAmine/vCoolor.vim'
+Plugin 'ap/vim-css-color'
+"Plugin 'tomlion/vim-solidity'
+Plugin 'slim-template/vim-slim'
+Plugin 'eslint/eslint'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'relastle/bluewery.vim'
 
 call vundle#end()
 
@@ -45,13 +60,21 @@ call vundle#end()
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-execute pathogen#infect() 
+" Vim Unimpaired documentation for navigating files/buffers, etc.
+" https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
+
+execute pathogen#infect()
 syntax on
 filetype plugin indent on
-"colorscheme solarized
-set background=dark
+
+set encoding=UTF-8
+"set background=dark
+"colorscheme solarized8
+colorscheme bluewery
+let g:lightline = { 'colorschem': 'bluewery' }
 set number
-set relativenumber
+set norelativenumber
+set autoread " tell vim to read all file changes outside of vim automatically
 nnoremap <SPACE> <Nop>
 let mapleader = "\<SPACE>"
 set ignorecase
@@ -60,7 +83,7 @@ set si "smart indent
 set noswapfile " tell vim not to make stupid swap file when opening with vim
 set wildmenu " visual autocomplete for command menu
 set cursorline
-"set cursorcolumn
+set cursorcolumn
 set timeoutlen=1000 " used for mapping delays
 set showcmd
 set tabstop=4       " The width of a TAB is set to 2.
@@ -69,7 +92,7 @@ set softtabstop=2   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
 set incsearch " searches characters as they are entered
 set hlsearch " highlight matches
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' "show line numbers in directory 
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' "show line numbers in directory
 let g:netrw_liststyle=3 " sets the list style for Netrw
 let NERDTreeShowLineNumbers=1 " show line numbers in NERDTree
 nnoremap <silent> <leader>d :NERDTreeToggle<CR>
@@ -77,8 +100,14 @@ set laststatus=2 " always show status (wrapped with airline)
 set noshowmode " remove mode from status line when using vim airline
 set tags=./tags; "" Set the tag file search order
 set grepprg=ack " Use Ack instead of Grep
-set guifont=Monaco:h13
+set guifont=Hack_Nerd_Font_Mono:h15
 set rtp+=/usr/local/opt/fzf
+
+" ========================================= "
+" CSS Autocompletion from https://medium.com/vim-drops/css-autocompletion-on-vim-no-plugins-needed-e8df9ce079c7
+" ========================================= "
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " ========================================= "
 " Snippets
@@ -103,42 +132,46 @@ set rtp+=/usr/local/opt/fzf
 " You Complete Me
 " ========================================= "
 
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-let g:ycm_key_list_accept_completion = ['<C-y>', '<Enter>']
+"let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+"let g:ycm_key_list_accept_completion = ['<C-y>', '<Enter>']
 
 " ========================================= "
 " NerdTree and CtrlP
 " ========================================= "
 " set ctrl p search paths to current nerdtree root directory
-let g:NERDTreeChDirMode = 2
-let g:ctrlp_working_path_mode = 'rw'
+let g:NERDTreeChDirMode = 0
+let g:ctrlp_working_path_mode = 0
 
 " ========================================= "
 " Ale and Lint
 " ========================================= "
-let g:ale_fixers = {
-\ 'javascript': ['eslint'],
-\ 'javascript.jsx': ['eslint'],
-\ 'ruby': ['rubocop'],
-\ 'cpp': ['clang-format'],
-\ 'css': ['CssBeautify'],
-\}
+"let g:ale_fixers = {
+"\ 'javascript': ['eslint'],
+"\ 'javascript.jsx': ['eslint'],
+"\ 'ruby': ['rubocop'],
+"\ 'cpp': ['clang-format'],
+"\ 'css': ['CssBeautify'],
+"\}
 
-let g:ale_linters = {
-\ 'javascript': ['eslint'],
-\ 'javascript.jsx': ['eslint'],
-\ 'css': ['scss-lint', 'csslint'],
-\ 'ruby': ['rubocop', 'brakeman'],
-\}
+"let g:ale_linters = {
+"\ 'javascript': ['eslint'],
+"\ 'javascript.jsx': ['eslint'],
+"\ 'css': ['scss-lint', 'csslint'],
+"\ 'ruby': ['rubocop', 'brakeman'],
+"\}
 
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
-let g:ale_open_list = 0
-let g:ale_sign_column_always = 1
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_save = 1
+"let g:ale_open_list = 0
+"let g:ale_sign_column_always = 1
 
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
+" ========================================= "
+" Airline
+" ========================================= "
+"" Set this. Airline will handle the rest.
+"let g:airline#extensions#ale#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " Set shell for Fish to work
 set shell=/bin/bash
@@ -147,23 +180,70 @@ set shell=/bin/bash
 let g:snipMate = { 'snippet_version' : 1 }
 
 " ========================================= "
+" CoC - Conquer of Completion
+" ========================================= "
+"
+" For Coc Diagnostics (errors)
+" create a mapping to show documentation
+" for the word under the cursor
+"nnoremap <silent> K :call CocAction('doHover')<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+" Setup autocompletion for coc.nvim
+" https://jamesnewton.com/blog/setting-up-coc-nvim-for-ruby-development
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Solargraph configuration
+let g:coc_global_extensions = ['coc-solargraph']
+
+" ========================================= "
 " Mappings
 " ========================================= "
 
 "Jump to Marks with leader a/b/c
 nnoremap <Leader>a `A
 nnoremap <Leader>b `B
-nnoremap <Leader>c `C
 "" Set mark with ma, mb,
 nnoremap ma mA
 nnoremap mb mB
 " Edit another file in the same directory as the current file
 " " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-" Split vertically with leader v
-map <Leader>v :vsp 
-" Split horizontally with leader h
-map <Leader>h :sp 
+
+" Split Window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w
+
+" Move window
+nnoremap <Leader> <C-w>w
+map <Leader> <C-w>w
+map s<left> <C-w>h
+map s<up> <C-w>k
+map s<down> <C-w>j
+map s<right> <C-w>l
+map sh <C-w>h
+map sk <C-w>k
+map sj <C-w>j
+map sl <C-w>l
+
+"" Switch panes
+nnoremap <Leader>k <C-W>w
+"" Go to previous pane
+nnoremap <Leader>j <C-W>W
+"" Scroll Forward
+nnoremap <Leader>f <C-F><CR>
+
 map <Leader>ac :e app/controllers/application_controller.rb<cr>
 " Use Leader b to see who wrote the code highlighted
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
@@ -177,26 +257,19 @@ nmap <Leader><Leader> V
 nnoremap <Leader>o :Files<CR>
 " search tags with leader t; fuzzy finder
 nnoremap <Leader>t :Tags<CR>
-" open buffer with ;
-nmap ; :Buffers<CR>
 " let ctrlp find all files
-let g:ctrlp_max_files=0
+" let g:ctrlp_max_files=0
 "" Git mappings
 nnoremap <Leader>gst :Git status<CR>
 "" Go to shell
 nnoremap <Leader>z <C-Z><CR>
-"" Switch panes
-nnoremap <Leader>k <C-W>w
-"" Go to previous pane
-nnoremap <Leader>j <C-W>W
-"" Scroll Forward
-nnoremap <Leader>f <C-F><CR>
+
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Search and replace
 "   - Search the usual way with /something
 "   - Hit 'cs' to replace first match, then hit <Esc>
-"   - Hit n.n.n.n, reviewing and replacing all matches. 
+"   - Hit n.n.n.n, reviewing and replacing all matches.
 "   - To replace a match, hit '.'. Otherwise skip with n
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
@@ -234,18 +307,14 @@ nnoremap <leader>r :R<CR>
 nnoremap yp vyp<CR>
 " Go to related model with leader m
 nnoremap <leader>m :Emodel<CR>
-" Clear trailing whitespace
-nnoremap <Leader>rt :%s/\s\+$//e<CR>
+" Clear trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 " Vim-expand-region mappings
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 " Use Enter instead of G for moving to lines/bottom of page
 nnoremap <CR> G
 vnoremap <CR> G
-" Display extra whitespace
-"set list listchars=tab:»·,trail:· // to show tabs
-" Use F9 to check syntax of ruby file
-autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y
 vnoremap <Leader>y "+y
@@ -259,19 +328,61 @@ vnoremap <Leader>P "+P
 nnoremap <Leader>tn :tabn<CR>
 " Show history with Leader .
 nnoremap <Leader>. :ls<CR>
-" Delete all marks with Leader 
+" Delete all marks with Leader
 nnoremap <Leader>m :delm A-Z0-9<CR>
 " Remove trailing whitespace on save for ruby files.
-au BufWritePre *.rb :%s/\s\+$//e      
+au BufWritePre *.rb :%s/\s\+$//e
 " Use 0 to go to start of text as opposed to start of line
 nmap 0 ^
-" Surround a word in quotes or whatever with leader cs" (cursor needs to hover on word)
-"nnoremap <leader>cs ysiw
 " Move split pane into its own tab with 'leader bt' Switch tabs with 'gt' or 'gT'.
 nnoremap <leader>bt <C-w>T
 "Use Ag instead of Ack for searching
 " Load CTAGS with Ctrl-F12
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let g:ackprg= 'ag --nogroup --nocolor --column'
-let g:solarized_termcolors=16
-"source ~/.vim/rspec
+"let g:solarized_termcolors=16 " might be outdated because of new solarized8 plugin
+
+" --------------- BUFFERS ---------------
+" open buffer with ;
+nmap ; :Buffers<CR>
+
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nnoremap <leader>bq :<c-u>bp <bar> bd #<cr>
+
+" Close all buffers except current one
+nnoremap <leader>bd :<c-u>up <bar> %bd <bar> e#<cr>
+
+" Emmet trigger key remap
+map ,, <C-y>,
+
+" Auto close quotes and parens
+"inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+inoremap " ""<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap ` ``<left>
+
+if has("gui_macvim")
+  nnoremap <D-j> :tabprevious<CR>
+  nnoremap <D-k> :tabnext<CR>
+
+  " Switch to specific tab numbers with Command-number
+  noremap <D-1> :tabn 1<CR>
+  noremap <D-2> :tabn 2<CR>
+  noremap <D-3> :tabn 3<CR>
+  noremap <D-4> :tabn 4<CR>
+  noremap <D-5> :tabn 5<CR>
+  noremap <D-6> :tabn 6<CR>
+  noremap <D-7> :tabn 7<CR>
+  noremap <D-8> :tabn 8<CR>
+
+  " Command-9 goes to the last tab
+  noremap <D-9> :tablast<CR>
+endif
+
